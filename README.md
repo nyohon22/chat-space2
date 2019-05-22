@@ -29,26 +29,27 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|integer|null: false, foreign_key: true|
+|name|integer|null: false|
 |email|text|null:false|
 
 ##messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|users|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 |body|text|
 |image|string|
 |group_id|integer|null: false, foreign_key: true|
 
-##group_membersテーブル
+##group_usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|users|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
 
 ##groupテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_name|integer|null: false, foreign_key: true|
+|name|text|null: false, foreign_key: true|
 
 ### Association
 
