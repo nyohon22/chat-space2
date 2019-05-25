@@ -3,25 +3,20 @@
   %p グループを作成しました
 
 .wrapper
+  = render 'messages/side-bar'
 
-  = render 'shared/side-bar'
-
-.chat
-  .header
-    .left-header
-      .left-header__title
-        グループ名
-      %ul.left-header__members
-        Member:
-        %li.Member
-          名前
-        %li.Member
-          名前
-        %li.Member
-          名前
-    .right-header
-      .right-header__button
-        Edit
+  .chat
+    .header
+      .left-header
+        .left-header__title
+          グループ名
+        %ul.left-header__members
+          Member:
+          %li.Member
+            test user
+      .right-header
+        .right-header__button
+          Edit
     .messages
       .message
         .upper-message
@@ -35,10 +30,10 @@
 
     .form
       %form
-        %input.form__message
+        %input.form__message{placeholder: '  type a message'}
         .form__mask
           %label.form__mask__image
-            = fa_icon 'picture-o', class: 'icon'
+            = fa_icon 'image', class: 'icon'
             %input.hidden{type: 'file'}
         %input.form__submit{type: 'submit', value: 'Send'}
 
