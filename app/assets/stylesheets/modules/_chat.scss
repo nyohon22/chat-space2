@@ -75,6 +75,7 @@
     box-sizing: border-box;
     height: 90px;
     padding: 20px 50px 20px 40px;
+
     &__message {
       border: none;
       float: left;
@@ -94,12 +95,13 @@
         display: none;
       }
     }
-    &__submit {
+    .submit {
+      width: 5px;
       background-color: #38AEF0;
       border: none;
       color: #fff;
       float: right;
-      font-size: 16px;
+      font-size: 12px;
       height: 50px;
       margin-left: 15px;
       padding: 0 30px;
