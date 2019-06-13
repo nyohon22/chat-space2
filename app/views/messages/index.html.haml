@@ -1,9 +1,9 @@
 !!!
 .header
-  %p グループを作成しました
 
 .wrapper
-  = render 'messages/side-bar'
+  .side-bar
+    = render 'messages/side-bar'
 
   .chat
     .header
@@ -15,19 +15,21 @@
           %li.Member
             test user
       .right-header
-        .right-header__button
+        %a.right-header__button
+        = link_to edit_group_path(current_user) do
           Edit
     .messages
-      ＝ render @messages
+      = render @messages
 
     .form
-      ＝ form_for [@group,@message] do |f|
-        = f.text_field :content, class: 'form__message', placeholder:"type a message"
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: "  type a message"
         .form__mask
           = f.label :image, class: 'form__mask__image' do
             = fa_icon 'image', class: 'icon'
             = f.file_field :image, class: 'hidden'
-        = f.submit 'Send', class: 'form submit'
+        .submit
+          = f.submit 'Send', class: 'form submit'
 
 
 
