@@ -21,8 +21,6 @@
           Edit
     .messages
       = render @messages
-      -# - @messages.each do |message|
-      -#   = render partial: "messages/messages", locals: { message: message }
 
     .form
       = form_for [@group, @message] do |f|
