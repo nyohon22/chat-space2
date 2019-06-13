@@ -1,9 +1,10 @@
 !!!
 .header
-  %p グループを作成しました
+  -# %p グループを作成しました
 
 .wrapper
-  = render 'messages/side-bar'
+  .side-bar
+    = render 'messages/side-bar'
 
   .chat
     .header
@@ -15,12 +16,13 @@
           %li.Member
             test user
       .right-header
-        .right-header__button
+        %a.right-header__button
+        = link_to edit_group_path(current_user) do
           Edit
     .messages
-      -# = render @message
-      - @messages.each do |message|
-        = render partial: "messages/messages", locals: { message: message }
+      = render @messages
+      -# - @messages.each do |message|
+      -#   = render partial: "messages/messages", locals: { message: message }
 
     .form
       = form_for [@group, @message] do |f|
