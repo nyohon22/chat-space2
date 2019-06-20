@@ -21,6 +21,7 @@ namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
   end
+
   desc 'upload secrets.yml'
   task :upload do
     on roles(:app) do |host|
@@ -29,9 +30,9 @@ namespace :deploy do
       end
       upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
     end
-    before :starting, 'deploy:upload'
+  end
+  before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
-end
 end
 
 set :default_env, {
