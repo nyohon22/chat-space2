@@ -21,36 +21,54 @@ $(function(){
     return html;
   }
 
-  $('#new_message').on('submit',function(e){
+  $("#new_message").on('submit', function(e){
     e.preventDefault();
-    var message = new FormData(this);
-    var url = $(this).attr('action')
+    var formData = new FormData(this);
+    // console.log("aaa")
+    var url = $(this).attr('action');
+    // console.log("url")
     $.ajax({
       url: url,
       type: "POST",
-      data: message,
+      data: formData,
       dataType: 'json',
       processData: false,
       contentType: false
     })
     .done(function(data){
-      var html = buildHTML(data);
-      $('.message').append(html);
-      $('.textbox').val('');
-      function scrollBottom(){
-        var target = $('.message').last();
-        var position = target.offset().top + $('.messages').scrollTop();
-        $('.messages').animate({
-          scrollTop: position
-        }, 300, 'swing');
-      }
+        var html = buildHTML(data);
+        $('.main__body').append(html);
+        $('#new_message')[0].reset();
+        $('.form__submit').prop("disabled", false);
+        scroll();
     })
-    .fail(function(data){
-      alert('メッセージの送信が出来ませんでした');
+    .fail(function(){
+      alert('エラーが発生しました。入力内容をご確認ください。');
     })
-    .always(function(data){
-      $('.submit-btn').prop('disabled', false);
+  });
+
+  function reloadMessages(){
+    var last_message_id = $('.timeline__bodyList').last().data('id');
+    var href = 'api/messages'
+    $.ajax({
+    url: href,
+    type: 'get',
+    dataType: 'json'
+    data: {id: last_message_id},
     })
 
-  })
+    .done(function(messages){
+      console.log(messages);
+      messages.forEach(function(message){
+        var insertHTML = buildHTML(message)
+        $('#message').append(insertHTML)
+      });
+      $('.timeline__body').animate({scrollTop: $('.timeline__body')[0].scrollHeight}, 'fast');
+    })
+    .fail(function(){
+      console.log('error');
+    });
+  };
+  setInterval(reloadMessages, 5000);
 });
+
