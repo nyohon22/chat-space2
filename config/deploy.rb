@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-# lock '<Capistranoのバージョン>'
+lock '3.11.0'
 
 set :application, 'chat-space2'
 set :repo_url,  'git@github.com:nyohon22/chat-space2.git'
@@ -31,6 +31,7 @@ namespace :deploy do
     end
     before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
+end
 end
 
 set :default_env, {
