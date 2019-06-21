@@ -52,7 +52,7 @@ $(function(){
     $.ajax({
     url: href,
     type: 'get',
-    dataType: 'json'
+    dataType: 'json',
     data: {id: last_message_id},
     })
 
