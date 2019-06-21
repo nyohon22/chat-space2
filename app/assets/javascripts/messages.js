@@ -24,9 +24,7 @@ $(function(){
   $("#new_message").on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
-    // console.log("aaa")
     var url = $(this).attr('action');
-    // console.log("url")
     $.ajax({
       url: url,
       type: "POST",
@@ -58,7 +56,6 @@ $(function(){
     })
 
     .done(function(messages){
-      console.log(messages);
       messages.forEach(function(message){
         var insertHTML = buildHTML(message)
         $('#message').append(insertHTML)
@@ -66,7 +63,6 @@ $(function(){
       $('.timeline__body').animate({scrollTop: $('.timeline__body')[0].scrollHeight}, 'fast');
     })
     .fail(function(){
-      console.log('error');
     });
   };
   setInterval(reloadMessages, 5000);
