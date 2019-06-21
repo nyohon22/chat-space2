@@ -35,9 +35,10 @@ $(function(){
     })
     .done(function(data){
         var html = buildHTML(data);
-        $('.main__body').append(html);
+        $('#message').append(html);
         $('#new_message')[0].reset();
         $('.form__submit').prop("disabled", false);
+        $('.timeline__body').animate({scrollTop: $(".timeline__body")[0].scrollHeight }, 'fast');
         scroll();
     })
     .fail(function(){
