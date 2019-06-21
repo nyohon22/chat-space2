@@ -11,6 +11,7 @@ before_action :set_group, only: [:edit,:update]
   end
 
   def create
+    binding.pry
     @group = Group.new(group_params)
 
     if @group.save
@@ -34,7 +35,7 @@ before_action :set_group, only: [:edit,:update]
   private
 
   def group_params
-    params.require(:group).permit(:name, { user_ids: '[]' })
+    params.require(:group).permit(:name, { user_ids: [] })
   end
 
   def set_group
